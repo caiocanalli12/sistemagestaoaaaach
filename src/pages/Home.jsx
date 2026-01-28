@@ -66,7 +66,7 @@ export default function Home() {
                             </div>
                             <div className="flex items-baseline gap-2">
                                 <span className="font-varsity text-4xl text-gray-400">R$</span>
-                                <AnimatedNumber value="5.411,79" isVisible={isVisible} />
+                                <AnimatedNumber value="5.411,80" isVisible={isVisible} />
                             </div>
                         </div>
                         <div className="p-3 bg-brand-green/20 rounded-full text-brand-green">
