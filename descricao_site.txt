@@ -5,4 +5,4 @@ Funcionalidades:
 - Controle de Estoque visual.
 - Prestação de Contas com eventos, custos fixos e download de comprovantes.
 
-Tecnologia: React, Tailwind e design Glassmorphism moderno. Totalmente adaptado para mobile e desktop.
+Tecnologia: React, Tailwind e design Glassmorphism moderno. Totalmente adaptado para mobile e desktop. 
