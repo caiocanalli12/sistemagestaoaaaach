@@ -66,7 +66,7 @@ export default function Home() {
                             </div>
                             <div className="flex items-baseline gap-2">
                                 <span className="font-varsity text-4xl text-gray-400">R$</span>
-                                <AnimatedNumber value="5.411,80" isVisible={isVisible} />
+                                <AnimatedNumber value="5.321,07" isVisible={isVisible} />
                             </div>
                         </div>
                         <div className="p-3 bg-brand-green/20 rounded-full text-brand-green">
@@ -127,12 +127,12 @@ export default function Home() {
                             <div>
                                 <p className="text-xs font-bold text-gray-400 uppercase font-montserrat">Gastos Última Movimentação</p>
                                 <p className="text-2xl font-varsity text-gray-800">
-                                    {isVisible ? 'R$ 35,00' : '•••••'}
+                                    {isVisible ? 'R$ 100,00' : '•••••'}
                                 </p>
                             </div>
                         </div>
-                        <Link to="/custos-fixos" className="mt-4 flex items-center gap-2 text-xs font-bold text-red-500 bg-red-50 px-3 py-1 rounded-full w-fit hover:bg-red-100 transition-colors cursor-pointer">
-                            <span>Canva</span>
+                        <Link to="/semaforo-festa" className="mt-4 flex items-center gap-2 text-xs font-bold text-red-500 bg-red-50 px-3 py-1 rounded-full w-fit hover:bg-red-100 transition-colors cursor-pointer">
+                            <span>Sinal Chácara</span>
                             <ArrowUpRight size={14} className="rotate-45" />
                         </Link>
                     </GlassCard>
