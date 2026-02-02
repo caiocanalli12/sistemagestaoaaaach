@@ -87,6 +87,12 @@ const CalendarWidget = () => {
 
     const days = generateCalendar();
 
+    const [selectedEvent, setSelectedEvent] = useState(null);
+
+    const handleDayClick = (event) => {
+        setSelectedEvent(event);
+    };
+
     return (
         <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -96,11 +102,11 @@ const CalendarWidget = () => {
         >
             <div className="absolute inset-0 bg-gradient-to-br from-white/40 to-transparent pointer-events-none" />
 
-            <div className="relative z-10">
+            <div className="relative z-10 w-full">
                 {/* Header */}
                 <div className="flex justify-between items-center mb-4">
                     <div>
-                        <h2 className="text-3xl font-varsity text-brand-green tracking-wider uppercase">
+                        <h2 className="text-2xl md:text-3xl font-varsity text-brand-green tracking-wider uppercase">
                             {months[currMonth]}
                         </h2>
                         <p className="text-gray-400 font-montserrat font-bold text-lg">
@@ -140,6 +146,7 @@ const CalendarWidget = () => {
                     {days.map((item, index) => (
                         <div
                             key={index}
+                            onClick={() => handleDayClick(item.event)}
                             title={item.event ? item.event.label : ''}
                             className={`
                                 aspect-square flex flex-col items-center justify-center rounded-xl font-bold font-montserrat transition-all duration-300 relative group p-1
@@ -154,15 +161,42 @@ const CalendarWidget = () => {
                             `}
                         >
                             <span className="text-lg leading-none">{item.day}</span>
-                            {/* Event Label */}
+
+                            {/* Desktop Event Label */}
                             {item.event && (
-                                <span className="text-[10px] uppercase font-bold mt-1 text-center leading-tight">
+                                <span className="hidden md:block text-[10px] uppercase font-bold mt-1 text-center leading-tight">
                                     {item.event.label}
                                 </span>
+                            )}
+
+                            {/* Mobile Event Dot */}
+                            {item.event && !item.active && (
+                                <div className="md:hidden mt-1 w-1.5 h-1.5 bg-orange-500 rounded-full"></div>
                             )}
                         </div>
                     ))}
                 </div>
+
+                {/* Mobile Selected Event Box */}
+                {selectedEvent && (
+                    <motion.div
+                        initial={{ opacity: 0, height: 0 }}
+                        animate={{ opacity: 1, height: 'auto' }}
+                        exit={{ opacity: 0, height: 0 }}
+                        className="md:hidden mt-4 bg-orange-50 border border-orange-100 rounded-xl p-4 flex items-center justify-between"
+                    >
+                        <div>
+                            <p className="text-xs font-bold text-orange-400 uppercase tracking-widest mb-1">Evento</p>
+                            <p className="text-lg font-varsity text-orange-600">{selectedEvent.label}</p>
+                        </div>
+                        <button
+                            onClick={(e) => { e.stopPropagation(); setSelectedEvent(null); }}
+                            className="p-2 text-orange-400 hover:bg-orange-100 rounded-full transition-colors"
+                        >
+                            <ChevronLeft className="rotate-[-90deg]" size={16} />
+                        </button>
+                    </motion.div>
+                )}
             </div>
         </motion.div>
     );
