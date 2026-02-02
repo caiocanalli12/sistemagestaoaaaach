@@ -1,4 +1,4 @@
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronLeft, ChevronRight, ChevronUp } from 'lucide-react';
 import { useState, useEffect } from 'react';
 
@@ -98,7 +98,7 @@ const CalendarWidget = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.4 }}
-            className="bg-white/60 backdrop-blur-md border border-white/40 rounded-3xl shadow-xl p-6 relative overflow-hidden"
+            className="bg-white/60 backdrop-blur-md border border-white/40 rounded-3xl shadow-xl p-4 md:p-6 relative overflow-hidden"
         >
             <div className="absolute inset-0 bg-gradient-to-br from-white/40 to-transparent pointer-events-none" />
 
@@ -160,7 +160,7 @@ const CalendarWidget = () => {
                                 }
                             `}
                         >
-                            <span className="text-lg leading-none">{item.day}</span>
+                            <span className="text-base md:text-lg leading-none">{item.day}</span>
 
                             {/* Desktop Event Label */}
                             {item.event && (
@@ -171,32 +171,34 @@ const CalendarWidget = () => {
 
                             {/* Mobile Event Dot */}
                             {item.event && !item.active && (
-                                <div className="md:hidden mt-1 w-1.5 h-1.5 bg-orange-500 rounded-full"></div>
+                                <div className="md:hidden absolute bottom-1.5 w-1.5 h-1.5 bg-orange-500 rounded-full"></div>
                             )}
                         </div>
                     ))}
                 </div>
 
                 {/* Mobile Selected Event Box */}
-                {selectedEvent && (
-                    <motion.div
-                        initial={{ opacity: 0, height: 0 }}
-                        animate={{ opacity: 1, height: 'auto' }}
-                        exit={{ opacity: 0, height: 0 }}
-                        className="md:hidden mt-4 bg-orange-50 border border-orange-100 rounded-xl p-4 flex items-center justify-between"
-                    >
-                        <div>
-                            <p className="text-xs font-bold text-orange-400 uppercase tracking-widest mb-1">Evento</p>
-                            <p className="text-lg font-varsity text-orange-600">{selectedEvent.label}</p>
-                        </div>
-                        <button
-                            onClick={(e) => { e.stopPropagation(); setSelectedEvent(null); }}
-                            className="p-2 text-orange-400 hover:bg-orange-100 rounded-full transition-colors"
+                <AnimatePresence>
+                    {selectedEvent && (
+                        <motion.div
+                            initial={{ opacity: 0, height: 0, marginTop: 0 }}
+                            animate={{ opacity: 1, height: 'auto', marginTop: 16 }}
+                            exit={{ opacity: 0, height: 0, marginTop: 0 }}
+                            className="md:hidden bg-orange-50 border border-orange-100 rounded-xl p-4 flex items-center justify-between overflow-hidden"
                         >
-                            <ChevronUp size={20} />
-                        </button>
-                    </motion.div>
-                )}
+                            <div>
+                                <p className="text-xs font-bold text-orange-400 uppercase tracking-widest mb-1">Evento</p>
+                                <p className="text-lg font-varsity text-orange-600">{selectedEvent.label}</p>
+                            </div>
+                            <button
+                                onClick={(e) => { e.stopPropagation(); setSelectedEvent(null); }}
+                                className="p-2 text-orange-400 hover:bg-orange-100 rounded-full transition-colors"
+                            >
+                                <ChevronUp size={20} />
+                            </button>
+                        </motion.div>
+                    )}
+                </AnimatePresence>
             </div>
         </motion.div>
     );
