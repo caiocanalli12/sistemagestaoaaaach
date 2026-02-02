@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { ChevronLeft, ChevronRight } from 'lucide-react';
+import { ChevronLeft, ChevronRight, ChevronUp } from 'lucide-react';
 import { useState, useEffect } from 'react';
 
 const CalendarWidget = () => {
@@ -13,7 +13,7 @@ const CalendarWidget = () => {
     ];
 
     const events = [
-        { day: 11, month: 2, label: 'Semáforo' }, // March is month 2
+        { day: 11, month: 2, label: 'Semáforo' },
         { day: 12, month: 2, label: 'Calourada' }
     ];
 
@@ -193,7 +193,7 @@ const CalendarWidget = () => {
                             onClick={(e) => { e.stopPropagation(); setSelectedEvent(null); }}
                             className="p-2 text-orange-400 hover:bg-orange-100 rounded-full transition-colors"
                         >
-                            <ChevronLeft className="rotate-[-90deg]" size={16} />
+                            <ChevronUp size={20} />
                         </button>
                     </motion.div>
                 )}
