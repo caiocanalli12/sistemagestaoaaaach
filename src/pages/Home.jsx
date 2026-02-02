@@ -7,7 +7,8 @@ import CalendarWidget from '../components/CalendarWidget';
 
 // Mock Data for the chart
 const data = [
-    { name: 'Fev', lucros: 0, gastos: 0 },
+    { name: 'Jan', saldo: 5411.79 },
+    { name: 'Fev', saldo: 5321.07 },
 ];
 
 const GlassCard = ({ children, className, delay = 0 }) => (
@@ -35,17 +36,7 @@ export default function Home() {
 
     return (
         <div className="flex flex-col gap-6 max-w-7xl mx-auto">
-            {/* Welcome Section */}
-            <motion.div
-                initial={{ opacity: 0, x: -20 }}
-                animate={{ opacity: 1, x: 0 }}
-                className="mb-4"
-            >
-                <h1 className="text-3xl font-montserrat font-bold text-gray-800">
-                    Painel Geral
-                </h1>
-                <p className="text-gray-500 font-medium">Balanço e Visão Geral da Atlética</p>
-            </motion.div>
+            {/* ... (Welcome Section omitted, keeping context) */}
 
             {/* Bento Grid */}
             <div className="grid grid-cols-1 md:grid-cols-12 gap-6 auto-rows-[minmax(180px,auto)]">
@@ -78,19 +69,39 @@ export default function Home() {
                         <ResponsiveContainer width="100%" height="100%">
                             <AreaChart data={data}>
                                 <defs>
-                                    <linearGradient id="colorLucros" x1="0" y1="0" x2="0" y2="1">
-                                        <stop offset="5%" stopColor="#54e600" stopOpacity={0.3} />
+                                    <linearGradient id="colorSaldo" x1="0" y1="0" x2="0" y2="1">
+                                        <stop offset="5%" stopColor="#54e600" stopOpacity={0.4} />
                                         <stop offset="95%" stopColor="#54e600" stopOpacity={0} />
                                     </linearGradient>
+                                    <filter id="shadow" height="200%">
+                                        <feDropShadow dx="0" dy="4" stdDeviation="4" floodColor="#54e600" floodOpacity="0.3" />
+                                    </filter>
                                 </defs>
                                 <CartesianGrid strokeDasharray="3 3" vertical={false} opacity={0.1} />
-                                <XAxis dataKey="name" axisLine={false} tickLine={false} tick={{ fill: '#9ca3af', fontSize: 12 }} />
+                                <XAxis
+                                    dataKey="name"
+                                    axisLine={false}
+                                    tickLine={false}
+                                    tick={{ fill: '#9ca3af', fontSize: 13, fontWeight: 600, fontFamily: 'Montserrat' }}
+                                    dy={10}
+                                />
                                 {isVisible && (
                                     <Tooltip
-                                        contentStyle={{ backgroundColor: 'rgba(255,255,255,0.8)', borderRadius: '12px', border: 'none', boxShadow: '0 4px 6px rgba(0,0,0,0.1)' }}
+                                        contentStyle={{ backgroundColor: 'rgba(255,255,255,0.9)', borderRadius: '16px', border: 'none', boxShadow: '0 10px 15px -3px rgba(0,0,0,0.1)' }}
+                                        itemStyle={{ color: '#1f2937', fontWeight: 'bold' }}
+                                        formatter={(value) => [`R$ ${value}`, 'Saldo']}
                                     />
                                 )}
-                                <Area type="monotone" dataKey="lucros" stroke="#54e600" strokeWidth={3} fillOpacity={1} fill="url(#colorLucros)" />
+                                <Area
+                                    type="monotone"
+                                    dataKey="saldo"
+                                    stroke="#54e600"
+                                    strokeWidth={4}
+                                    fillOpacity={1}
+                                    fill="url(#colorSaldo)"
+                                    activeDot={{ r: 8, strokeWidth: 0, fill: '#16a34a' }}
+                                    style={{ filter: 'url(#shadow)' }}
+                                />
                             </AreaChart>
                         </ResponsiveContainer>
                     </div>
@@ -138,6 +149,22 @@ export default function Home() {
                     </GlassCard>
 
                 </div>
+
+                {/* Investment Observation - Spans 12 cols */}
+                <GlassCard className="md:col-span-12 py-4" delay={0.4}>
+                    <div className="flex items-center gap-5">
+                        <div className="p-3 bg-blue-100/80 rounded-2xl text-blue-600 shrink-0 shadow-sm">
+                            <TrendingUp size={24} />
+                        </div>
+                        <div>
+                            <h3 className="text-sm font-bold text-gray-400 uppercase font-montserrat mb-1">Rendimento Automático</h3>
+                            <p className="text-gray-600 font-medium font-montserrat text-sm md:text-base leading-relaxed">
+                                O saldo possui rendimento de <span className="text-blue-600 font-bold">100% do CDI diário</span>.
+                                A valorização compensa parte dos gastos, mantendo o saldo sempre atualizado.
+                            </p>
+                        </div>
+                    </div>
+                </GlassCard>
 
                 {/* Calendar Section - Spans 12 cols */}
                 <div className="md:col-span-12">
