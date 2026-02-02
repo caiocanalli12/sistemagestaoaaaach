@@ -12,6 +12,31 @@ const CalendarWidget = () => {
         "JULHO", "AGOSTO", "SETEMBRO", "OUTUBRO", "NOVEMBRO", "DEZEMBRO"
     ];
 
+    const events = [
+        { day: 11, month: 2, label: 'Semáforo' }, // March is month 2
+        { day: 12, month: 2, label: 'Calourada' }
+    ];
+
+    const prevMonth = () => {
+        if (currYear === 2026 && currMonth === 0) return; // Prevent before Jan 2026
+        if (currMonth === 0) {
+            setCurrMonth(11);
+            setCurrYear(currYear - 1);
+        } else {
+            setCurrMonth(currMonth - 1);
+        }
+    };
+
+    const nextMonth = () => {
+        if (currYear === 2026 && currMonth === 11) return; // Prevent after Dec 2026
+        if (currMonth === 11) {
+            setCurrMonth(0);
+            setCurrYear(currYear + 1);
+        } else {
+            setCurrMonth(currMonth + 1);
+        }
+    };
+
     const generateCalendar = () => {
         const firstDayOfMonth = new Date(currYear, currMonth, 1).getDay();
         const lastDateOfMonth = new Date(currYear, currMonth + 1, 0).getDate();
@@ -25,7 +50,8 @@ const CalendarWidget = () => {
             days.push({
                 day: lastDateOfLastMonth - i + 1,
                 active: false,
-                faded: true
+                faded: true,
+                event: null
             });
         }
 
@@ -35,10 +61,14 @@ const CalendarWidget = () => {
                 i === new Date().getDate() &&
                 currMonth === new Date().getMonth() &&
                 currYear === new Date().getFullYear();
+
+            const event = events.find(e => e.day === i && e.month === currMonth);
+
             days.push({
                 day: i,
                 active: isToday,
-                faded: false
+                faded: false,
+                event: event
             });
         }
 
@@ -47,7 +77,8 @@ const CalendarWidget = () => {
             days.push({
                 day: i - lastDayOfMonth + 1,
                 active: false,
-                faded: true
+                faded: true,
+                event: null
             });
         }
 
@@ -69,14 +100,30 @@ const CalendarWidget = () => {
                 {/* Header */}
                 <div className="flex justify-between items-center mb-4">
                     <div>
-                        <h2 className="text-3xl font-varsity text-brand-green tracking-wider">
+                        <h2 className="text-3xl font-varsity text-brand-green tracking-wider uppercase">
                             {months[currMonth]}
                         </h2>
                         <p className="text-gray-400 font-montserrat font-bold text-lg">
                             {currYear}
                         </p>
                     </div>
-                    {/* Optional: Add controls here if needed, keeping it simple for now as requested "automatic" */}
+                    {/* Navigation Controls */}
+                    <div className="flex gap-2">
+                        <button
+                            onClick={prevMonth}
+                            disabled={currYear === 2026 && currMonth === 0}
+                            className="p-2 bg-white/50 hover:bg-white text-brand-green rounded-full transition-colors disabled:opacity-30 disabled:cursor-not-allowed"
+                        >
+                            <ChevronLeft size={20} />
+                        </button>
+                        <button
+                            onClick={nextMonth}
+                            disabled={currYear === 2026 && currMonth === 11}
+                            className="p-2 bg-white/50 hover:bg-white text-brand-green rounded-full transition-colors disabled:opacity-30 disabled:cursor-not-allowed"
+                        >
+                            <ChevronRight size={20} />
+                        </button>
+                    </div>
                 </div>
 
                 {/* Days of Week */}
@@ -93,17 +140,26 @@ const CalendarWidget = () => {
                     {days.map((item, index) => (
                         <div
                             key={index}
+                            title={item.event ? item.event.label : ''}
                             className={`
-                                aspect-square flex items-center justify-center rounded-xl text-lg font-bold font-montserrat transition-all duration-300
+                                aspect-square flex flex-col items-center justify-center rounded-xl font-bold font-montserrat transition-all duration-300 relative group p-1
                                 ${item.active
-                                    ? 'bg-brand-green text-white shadow-lg shadow-brand-green/30 scale-110'
+                                    ? 'bg-brand-green text-white shadow-lg shadow-brand-green/30 scale-110 z-10'
                                     : item.faded
                                         ? 'text-gray-300'
-                                        : 'text-gray-600 hover:bg-gray-100 hover:text-brand-green cursor-pointer'
+                                        : item.event
+                                            ? 'bg-orange-100 text-orange-600 hover:bg-orange-200 cursor-pointer'
+                                            : 'text-gray-600 hover:bg-gray-100 hover:text-brand-green cursor-pointer'
                                 }
                             `}
                         >
-                            {item.day}
+                            <span className="text-lg leading-none">{item.day}</span>
+                            {/* Event Label */}
+                            {item.event && (
+                                <span className="text-[10px] uppercase font-bold mt-1 text-center leading-tight">
+                                    {item.event.label}
+                                </span>
+                            )}
                         </div>
                     ))}
                 </div>
