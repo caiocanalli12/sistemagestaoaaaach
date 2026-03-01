@@ -1,8 +1,9 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowLeft, FolderOpen, Image, X } from 'lucide-react';
+import { ArrowLeft, FolderOpen, Image, X, Car } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import canvaReceipt from '../comprovantes/canva_janeiro.png';
+import uberReceipt from '../comprovantes/ubermd.png';
 
 function CustosFixos() {
     const [selectedImage, setSelectedImage] = useState(null);
@@ -36,6 +37,25 @@ function CustosFixos() {
                                 <Image size={20} />
                             </div>
                             <span className="text-sm text-gray-600 font-medium font-montserrat">canva_janeiro.png</span>
+                        </button>
+                    </div>
+                </div>
+
+                {/* Uber Folder */}
+                <div className="bg-white rounded-3xl p-6 shadow-sm border border-gray-100">
+                    <h2 className="text-gray-800 font-bold font-montserrat mb-4 flex items-center gap-2">
+                        <Car className="text-brand-green" /> UBER
+                    </h2>
+
+                    <div className="space-y-2">
+                        <button
+                            onClick={() => setSelectedImage(uberReceipt)}
+                            className="w-full flex items-center gap-3 p-3 rounded-xl hover:bg-gray-50 transition-colors group cursor-pointer text-left"
+                        >
+                            <div className="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center text-blue-500 group-hover:scale-105 transition-transform">
+                                <Image size={20} />
+                            </div>
+                            <span className="text-sm text-gray-600 font-medium font-montserrat">ubermd.png</span>
                         </button>
                     </div>
                 </div>

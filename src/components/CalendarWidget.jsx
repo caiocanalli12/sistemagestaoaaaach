@@ -14,7 +14,7 @@ const CalendarWidget = () => {
 
     const events = [
         { day: 11, month: 2, label: 'Vôlei Integração' },
-        { day: 18, month: 2, label: 'Semáforo' },
+        { day: 19, month: 2, label: 'Semáforo' },
         { day: 26, month: 2, label: 'Calourada' }
     ];
 
