@@ -1,8 +1,13 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowLeft, FolderOpen, Image, X } from 'lucide-react';
+import { ArrowLeft, FolderOpen, Image, X, ShoppingCart } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
-import chacaraReceipt from '../comprovantes/chacara_sinal_calourada.png';
+import chacaraReceipt from '../comprovantes/calourada/chacara_sinal_calourada.png';
+import coroteReceipt from '../comprovantes/calourada/corote.jpeg';
+import mercadoReceipt from '../comprovantes/calourada/mercado.jpeg';
+import sucoReceipt from '../comprovantes/calourada/suco_em_po.jpeg';
+import vodkaReceipt from '../comprovantes/calourada/vodka_corote.jpeg';
+import xaropeReceipt from '../comprovantes/calourada/xarope_granadine.jpeg';
 
 function SemaforoFesta() {
     const [selectedImage, setSelectedImage] = useState(null);
@@ -36,6 +41,61 @@ function SemaforoFesta() {
                                 <Image size={20} />
                             </div>
                             <span className="text-sm text-gray-600 font-medium font-montserrat">chacara_sinal_calourada.png</span>
+                        </button>
+                    </div>
+                </div>
+
+                {/* Bebidas e Mercado Folder */}
+                <div className="bg-white rounded-3xl p-6 shadow-sm border border-gray-100">
+                    <h2 className="text-gray-800 font-bold font-montserrat mb-4 flex items-center gap-2">
+                        <ShoppingCart className="text-brand-green" /> BEBIDAS E MERCADO
+                    </h2>
+
+                    <div className="space-y-2">
+                        <button
+                            onClick={() => setSelectedImage(coroteReceipt)}
+                            className="w-full flex items-center gap-3 p-3 rounded-xl hover:bg-gray-50 transition-colors group cursor-pointer text-left"
+                        >
+                            <div className="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center text-blue-500 group-hover:scale-105 transition-transform">
+                                <Image size={20} />
+                            </div>
+                            <span className="text-sm text-gray-600 font-medium font-montserrat">corote.jpeg</span>
+                        </button>
+                        <button
+                            onClick={() => setSelectedImage(mercadoReceipt)}
+                            className="w-full flex items-center gap-3 p-3 rounded-xl hover:bg-gray-50 transition-colors group cursor-pointer text-left"
+                        >
+                            <div className="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center text-blue-500 group-hover:scale-105 transition-transform">
+                                <Image size={20} />
+                            </div>
+                            <span className="text-sm text-gray-600 font-medium font-montserrat">mercado.jpeg</span>
+                        </button>
+                        <button
+                            onClick={() => setSelectedImage(sucoReceipt)}
+                            className="w-full flex items-center gap-3 p-3 rounded-xl hover:bg-gray-50 transition-colors group cursor-pointer text-left"
+                        >
+                            <div className="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center text-blue-500 group-hover:scale-105 transition-transform">
+                                <Image size={20} />
+                            </div>
+                            <span className="text-sm text-gray-600 font-medium font-montserrat">suco_em_po.jpeg</span>
+                        </button>
+                        <button
+                            onClick={() => setSelectedImage(vodkaReceipt)}
+                            className="w-full flex items-center gap-3 p-3 rounded-xl hover:bg-gray-50 transition-colors group cursor-pointer text-left"
+                        >
+                            <div className="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center text-blue-500 group-hover:scale-105 transition-transform">
+                                <Image size={20} />
+                            </div>
+                            <span className="text-sm text-gray-600 font-medium font-montserrat">vodka_corote.jpeg</span>
+                        </button>
+                        <button
+                            onClick={() => setSelectedImage(xaropeReceipt)}
+                            className="w-full flex items-center gap-3 p-3 rounded-xl hover:bg-gray-50 transition-colors group cursor-pointer text-left"
+                        >
+                            <div className="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center text-blue-500 group-hover:scale-105 transition-transform">
+                                <Image size={20} />
+                            </div>
+                            <span className="text-sm text-gray-600 font-medium font-montserrat">xarope_granadine.jpeg</span>
                         </button>
                     </div>
                 </div>

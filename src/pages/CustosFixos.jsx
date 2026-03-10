@@ -2,8 +2,9 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowLeft, FolderOpen, Image, X, Car } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
-import canvaReceipt from '../comprovantes/canva_janeiro.png';
-import uberReceipt from '../comprovantes/ubermd.png';
+import canvaReceipt from '../comprovantes/custos_fixos_manutencoes/canva_janeiro.png';
+import canvaFevReceipt from '../comprovantes/custos_fixos_manutencoes/canva_feveireiro.jpeg';
+import uberReceipt from '../comprovantes/custos_fixos_manutencoes/ubermd.png';
 
 function CustosFixos() {
     const [selectedImage, setSelectedImage] = useState(null);
@@ -37,6 +38,15 @@ function CustosFixos() {
                                 <Image size={20} />
                             </div>
                             <span className="text-sm text-gray-600 font-medium font-montserrat">canva_janeiro.png</span>
+                        </button>
+                        <button
+                            onClick={() => setSelectedImage(canvaFevReceipt)}
+                            className="w-full flex items-center gap-3 p-3 rounded-xl hover:bg-gray-50 transition-colors group cursor-pointer text-left"
+                        >
+                            <div className="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center text-blue-500 group-hover:scale-105 transition-transform">
+                                <Image size={20} />
+                            </div>
+                            <span className="text-sm text-gray-600 font-medium font-montserrat">canva_feveireiro.jpeg</span>
                         </button>
                     </div>
                 </div>

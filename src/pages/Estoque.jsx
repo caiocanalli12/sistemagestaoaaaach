@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { ArrowLeft, Zap, GlassWater, Wine, Beer, Milk, Package, Martini } from 'lucide-react';
+import { ArrowLeft, Zap, GlassWater, Wine, Beer, Milk, Package, Martini, Droplet } from 'lucide-react';
 import stockData from '../data/estoque.json';
 
 // Map types to Lucide icons
@@ -11,7 +11,8 @@ const iconMap = {
     corote: <Milk size={48} className="text-pink-400" />,
     cerveja: <Beer size={48} className="text-amber-500" />,
     cachaca: <Martini size={48} className="text-teal-500" />,
-    suco: <Package size={48} className="text-orange-400" />
+    suco: <Package size={48} className="text-orange-400" />,
+    xarope: <Droplet size={48} className="text-red-500" />
 };
 
 const InventoryCard = ({ item, index }) => {

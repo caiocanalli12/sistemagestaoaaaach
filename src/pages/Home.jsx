@@ -9,7 +9,7 @@ import CalendarWidget from '../components/CalendarWidget';
 const data = [
     { name: 'Jan', saldo: 5411.79 },
     { name: 'Fev', saldo: 5321.07 },
-    { name: 'Mar', saldo: 5309.89 },
+    { name: 'Mar', saldo: 4382.91 },
 ];
 
 const GlassCard = ({ children, className, delay = 0 }) => (
@@ -58,7 +58,7 @@ export default function Home() {
                             </div>
                             <div className="flex items-baseline gap-2">
                                 <span className="font-varsity text-4xl text-gray-400">R$</span>
-                                <AnimatedNumber value="5.309,89" isVisible={isVisible} />
+                                <AnimatedNumber value="4.382,91" isVisible={isVisible} />
                             </div>
                         </div>
                         <div className="p-3 bg-brand-green/20 rounded-full text-brand-green">
@@ -143,8 +143,8 @@ export default function Home() {
                                 </p>
                             </div>
                         </div>
-                        <Link to="/custos-fixos" className="mt-4 flex items-center gap-2 text-xs font-bold text-red-500 bg-red-50 px-3 py-1 rounded-full w-fit hover:bg-red-100 transition-colors cursor-pointer">
-                            <span>Uber Reunião MD</span>
+                        <Link to="/semaforo-festa" className="mt-4 flex items-center gap-2 text-xs font-bold text-red-500 bg-red-50 px-3 py-1 rounded-full w-fit hover:bg-red-100 transition-colors cursor-pointer">
+                            <span>Calourada</span>
                             <ArrowUpRight size={14} className="rotate-45" />
                         </Link>
                     </GlassCard>
