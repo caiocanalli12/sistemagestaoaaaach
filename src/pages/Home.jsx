@@ -9,7 +9,7 @@ import CalendarWidget from '../components/CalendarWidget';
 const data = [
     { name: 'Jan', saldo: 5411.79 },
     { name: 'Fev', saldo: 5321.07 },
-    { name: 'Mar', saldo: 4382.91 },
+    { name: 'Mar', saldo: 4369.35 },
 ];
 
 const GlassCard = ({ children, className, delay = 0 }) => (
@@ -58,7 +58,7 @@ export default function Home() {
                             </div>
                             <div className="flex items-baseline gap-2">
                                 <span className="font-varsity text-4xl text-gray-400">R$</span>
-                                <AnimatedNumber value="4.382,91" isVisible={isVisible} />
+                                <AnimatedNumber value="4.369,35" isVisible={isVisible} />
                             </div>
                         </div>
                         <div className="p-3 bg-brand-green/20 rounded-full text-brand-green">
@@ -139,12 +139,12 @@ export default function Home() {
                             <div>
                                 <p className="text-xs font-bold text-gray-400 uppercase font-montserrat">Gastos Última Movimentação</p>
                                 <p className="text-2xl font-varsity text-gray-800">
-                                    {isVisible ? 'R$ 11,18' : '•••••'}
+                                    {isVisible ? 'R$ 13,56' : '•••••'}
                                 </p>
                             </div>
                         </div>
-                        <Link to="/semaforo-festa" className="mt-4 flex items-center gap-2 text-xs font-bold text-red-500 bg-red-50 px-3 py-1 rounded-full w-fit hover:bg-red-100 transition-colors cursor-pointer">
-                            <span>Calourada</span>
+                        <Link to="/custos-fixos" className="mt-4 flex items-center gap-2 text-xs font-bold text-red-500 bg-red-50 px-3 py-1 rounded-full w-fit hover:bg-red-100 transition-colors cursor-pointer">
+                            <span>Cópia Chave</span>
                             <ArrowUpRight size={14} className="rotate-45" />
                         </Link>
                     </GlassCard>

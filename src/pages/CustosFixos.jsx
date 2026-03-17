@@ -1,10 +1,11 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowLeft, FolderOpen, Image, X, Car } from 'lucide-react';
+import { ArrowLeft, FolderOpen, Image, X, Car, Key } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import canvaReceipt from '../comprovantes/custos_fixos_manutencoes/canva_janeiro.png';
 import canvaFevReceipt from '../comprovantes/custos_fixos_manutencoes/canva_feveireiro.jpeg';
 import uberReceipt from '../comprovantes/custos_fixos_manutencoes/ubermd.png';
+import copiaChaveReceipt from '../comprovantes/custos_fixos_manutencoes/copia_chave.png';
 
 function CustosFixos() {
     const [selectedImage, setSelectedImage] = useState(null);
@@ -66,6 +67,25 @@ function CustosFixos() {
                                 <Image size={20} />
                             </div>
                             <span className="text-sm text-gray-600 font-medium font-montserrat">ubermd.png</span>
+                        </button>
+                    </div>
+                </div>
+
+                {/* Manutenção Folder */}
+                <div className="bg-white rounded-3xl p-6 shadow-sm border border-gray-100">
+                    <h2 className="text-gray-800 font-bold font-montserrat mb-4 flex items-center gap-2">
+                        <Key className="text-brand-green" /> MANUTENÇÕES
+                    </h2>
+
+                    <div className="space-y-2">
+                        <button
+                            onClick={() => setSelectedImage(copiaChaveReceipt)}
+                            className="w-full flex items-center gap-3 p-3 rounded-xl hover:bg-gray-50 transition-colors group cursor-pointer text-left"
+                        >
+                            <div className="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center text-blue-500 group-hover:scale-105 transition-transform">
+                                <Image size={20} />
+                            </div>
+                            <span className="text-sm text-gray-600 font-medium font-montserrat">copia_chave.png</span>
                         </button>
                     </div>
                 </div>

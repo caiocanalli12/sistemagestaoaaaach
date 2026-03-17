@@ -1,7 +1,20 @@
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { ArrowLeft, Zap, GlassWater, Wine, Beer, Milk, Package, Martini, Droplet } from 'lucide-react';
-import stockData from '../data/estoque.json';
+import { useState, useEffect } from 'react';
+import initialStockData from '../data/estoque.json';
+
+let currentStockData = initialStockData;
+let updateListeners = [];
+
+if (import.meta.hot) {
+    import.meta.hot.accept('../data/estoque.json', (newModule) => {
+        if (newModule) {
+            currentStockData = newModule.default;
+            updateListeners.forEach(listener => listener([...currentStockData]));
+        }
+    });
+}
 
 // Map types to Lucide icons
 const iconMap = {
@@ -59,6 +72,16 @@ const InventoryCard = ({ item, index }) => {
 };
 
 export default function Estoque() {
+    const [stockData, setStockData] = useState(currentStockData);
+
+    useEffect(() => {
+        const listener = (newData) => setStockData(newData);
+        updateListeners.push(listener);
+        return () => {
+            updateListeners = updateListeners.filter(l => l !== listener);
+        };
+    }, []);
+
     return (
         <div className="max-w-7xl mx-auto flex flex-col gap-8 pb-20">
 
