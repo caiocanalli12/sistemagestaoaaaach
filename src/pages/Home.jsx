@@ -9,7 +9,7 @@ import CalendarWidget from '../components/CalendarWidget';
 const data = [
     { name: 'Jan', saldo: 5411.79 },
     { name: 'Fev', saldo: 5321.07 },
-    { name: 'Mar', saldo: 4369.35 },
+    { name: 'Mar', saldo: 7616.94 },
 ];
 
 const GlassCard = ({ children, className, delay = 0 }) => (
@@ -58,7 +58,7 @@ export default function Home() {
                             </div>
                             <div className="flex items-baseline gap-2">
                                 <span className="font-varsity text-4xl text-gray-400">R$</span>
-                                <AnimatedNumber value="4.369,35" isVisible={isVisible} />
+                                <AnimatedNumber value="7.616,94" isVisible={isVisible} />
                             </div>
                         </div>
                         <div className="p-3 bg-brand-green/20 rounded-full text-brand-green">
@@ -120,13 +120,13 @@ export default function Home() {
                             <div>
                                 <p className="text-xs font-bold text-gray-400 uppercase font-montserrat">Lucros Última Festa</p>
                                 <p className="text-2xl font-varsity text-gray-800">
-                                    {isVisible ? 'R$ 0,00' : '•••••'}
+                                    {isVisible ? 'R$ 2.150,00' : '•••••'}
                                 </p>
                             </div>
                         </div>
-                        <div className="mt-4 flex items-center gap-2 text-xs font-bold text-gray-500 bg-gray-100 px-3 py-1 rounded-full w-fit">
-                            <Minus size={14} />
-                            <span>0% vs mês anterior</span>
+                        <div className="mt-4 flex items-center gap-2 text-xs font-bold text-green-500 bg-green-50 px-3 py-1 rounded-full w-fit">
+                            <ArrowUpRight size={14} />
+                            <span>Calourada</span>
                         </div>
                     </GlassCard>
 

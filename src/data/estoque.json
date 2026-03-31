@@ -9,19 +9,19 @@
         "id": 2,
         "name": "REFRIGERANTE",
         "type": "refrigerante",
-        "quantity": 42
+        "quantity": 0
     },
     {
         "id": 3,
         "name": "VODKA",
         "type": "vodka",
-        "quantity": 30
+        "quantity": 0
     },
     {
         "id": 4,
         "name": "COROTE",
         "type": "corote",
-        "quantity": 60
+        "quantity": 0
     },
     {
         "id": 5,
@@ -39,12 +39,12 @@
         "id": 7,
         "name": "SUCO EM PÓ",
         "type": "suco",
-        "quantity": 15
+        "quantity": 0
     },
     {
         "id": 8,
         "name": "XAROPE",
         "type": "xarope",
-        "quantity": 5
+        "quantity": 0
     }
 ]
